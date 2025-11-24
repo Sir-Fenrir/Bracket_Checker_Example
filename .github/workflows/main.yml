@@ -34,14 +34,11 @@ jobs:
       
   linting: 
     runs-on: ubuntu-latest
-    name: Linting the code
+    name: Checking dependencies
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6.0.0
 
-      - name: Linter
-        uses: zyactions/dotnet-lint@v1
-        with:
-          workspace: Bracket_Checker.sln
-          implicit-restore: true
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v4
