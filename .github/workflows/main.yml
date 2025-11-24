@@ -20,5 +20,5 @@ jobs:
 
       - name: Run MSBuild
         id: run_msbuild
-        run: msbuild .\Bracket_Checker_Example_Public.sln  /t:build /p:Configuration=Debug
+        run: msbuild .\Bracket_Checker.sln  /t:build /p:Configuration=Debug
       
