@@ -26,6 +26,7 @@ jobs:
         with:
           dotnet-version: '10.0.x'
 
+      # One restore, so we can use it both for the build and the test
       - run: dotnet restore
 
       - run: dotnet build --no-restore
@@ -35,14 +36,16 @@ jobs:
   dependency-check: 
     runs-on: ubuntu-latest
     name: Checking dependencies
-    if: ${{ github.event_name == 'pull_request' }}
+    # We only do this when we add new code using a pull request,
+    # For general information about dependency vulnerabilities GitHub already offers Dependabot.
+    #if: ${{ github.event_name == 'pull_request' }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6.0.0
 
-      - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v4
-        with:
-          base-ref: main
-          head-ref: main
+      # - name: 'Dependency Review'
+      #   uses: actions/dependency-review-action@v4
+
+      - name: Check vulnerable NuGet packages
+        uses: elmahio/github-check-vulnerable-nuget-packages-action@v2
