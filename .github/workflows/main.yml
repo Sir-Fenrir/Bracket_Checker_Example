@@ -42,3 +42,6 @@ jobs:
 
       - name: Linter
         uses: super-linter/super-linter@v7.1.0
+        env:
+          # To report GitHub Actions status checks
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
