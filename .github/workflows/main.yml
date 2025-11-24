@@ -33,7 +33,7 @@ jobs:
       - run: dotnet test --no-build
       
   linting: 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     name: Linting the code
 
     steps:
