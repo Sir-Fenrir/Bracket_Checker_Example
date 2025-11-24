@@ -1,0 +1,26 @@
+name: 'build'
+
+on: 
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+    name: Run Build & Test
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.0
+        id: checkout_code
+
+      - name: Setup MSBuild and add to PATH
+        uses: microsoft/setup-msbuild@v2
+        id: setup_msbuild
+
+      - name: Run MSBuild
+        id: run_msbuild
+        run: msbuild .\Bracket_Checker_Example_Public.sln  /t:clean /p:Configuration=Debug
+          nuget restore .\gitactionstest.sln
+          msbuild .\Bracket_Checker_Example_Public.sln  /t:build /p:Configuration=Debug
+      
