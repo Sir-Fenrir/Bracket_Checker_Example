@@ -12,7 +12,7 @@ on:
 # Workflow is made up of jobs, which run in parallel by default
 jobs:
   build: # I've given this job the tag 'build'
-    runs-on: windows-latest # Required to tell what it runs on
+    runs-on: ubuntu-latest # Required to tell what it runs on
     name: Run Build & Test # The name I've given
 
     # with the 'if' keyword, you can add conditions which must match, otherwise the job won't run. See https://docs.github.com/en/actions/reference/workflows-and-actions/expressions
@@ -47,11 +47,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6.0.0
 
-      - name: Annotate
-        # You may pin to the exact commit or the version.
-        uses: JetBrains/ReSharper-InspectCode@v0.11
-        with:
-          solution: ./Bracket_Checker.sln
+      # - name: Annotate
+      #   # You may pin to the exact commit or the version.
+      #   uses: JetBrains/ReSharper-InspectCode@v0.11
+      #   with:
+      #     solution: ./Bracket_Checker.sln
 
       # - name: 'Dependency Review'
       #   uses: actions/dependency-review-action@v4
