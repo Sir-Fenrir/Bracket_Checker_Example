@@ -1,18 +1,25 @@
 name: 'build'
 
+# Defining the triggers
 on: 
   push:
-    branches: [ main ]
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
+# Workflow is made up of jobs, which run in parallel by default
 jobs:
-  build:
-    runs-on: windows-latest
-    name: Run Build & Test
+  build: # I've given this job the tag 'build'
+    runs-on: windows-latest # Required to tell what it runs on
+    name: Run Build & Test # The name I've given
+
+    # with the 'if' keyword, you can add conditions which must match, otherwise the job won't run. See https://docs.github.com/en/actions/reference/workflows-and-actions/expressions
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6.0.0
-        id: checkout_code
 
       - name: Setup dotnet 10
         uses: actions/setup-dotnet@v5
@@ -25,3 +32,13 @@ jobs:
 
       - run: dotnet test --no-build
       
+  linting: 
+    runs-on: windows-latest
+    name: Linting the code
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v6.0.0
+
+      - name: Linter
+        uses: super-linter/super-linter@v7.1.0
