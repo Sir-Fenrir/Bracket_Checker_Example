@@ -20,7 +20,5 @@ jobs:
 
       - name: Run MSBuild
         id: run_msbuild
-        run: msbuild .\Bracket_Checker_Example_Public.sln  /t:clean /p:Configuration=Debug
-          nuget restore .\gitactionstest.sln
-          msbuild .\Bracket_Checker_Example_Public.sln  /t:build /p:Configuration=Debug
+        run: msbuild .\Bracket_Checker_Example_Public.sln  /t:build /p:Configuration=Debug
       
