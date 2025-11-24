@@ -32,28 +32,19 @@ jobs:
       - run: dotnet build --no-restore
 
       - run: dotnet test --no-build
-
-      - name: Check vulnerable NuGet packages
-        uses: elmahio/github-check-vulnerable-nuget-packages-action@v2
       
   dependency-check: 
     runs-on: ubuntu-latest
     name: Checking dependencies
     # We only do this when we add new code using a pull request,
     # For general information about dependency vulnerabilities GitHub already offers Dependabot.
-    #if: ${{ github.event_name == 'pull_request' }}
+    if: ${{ github.event_name == 'pull_request' }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v6.0.0
 
-      # - name: Annotate
-      #   # You may pin to the exact commit or the version.
-      #   uses: JetBrains/ReSharper-InspectCode@v0.11
-      #   with:
-      #     solution: ./Bracket_Checker.sln
-
-      # - name: 'Dependency Review'
-      #   uses: actions/dependency-review-action@v4
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v4
 
 
