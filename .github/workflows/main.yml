@@ -42,14 +42,10 @@ jobs:
     runs-on: 'ubuntu-latest'
     permissions:
       # required for all workflows
-      security-events: write
+      #security-events: write
   
       # required to fetch internal or private CodeQL packs
-      packages: read
-  
-      # only required for workflows in private repositories
-      actions: read
-      contents: read
+      #packages: read
   
     steps:
     - name: Checkout repository
