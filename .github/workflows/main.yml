@@ -40,7 +40,7 @@ jobs:
   analyze:
     name: Analyze C#
     runs-on: 'ubuntu-latest'
-    permissions:
+    #permissions:
       # required for all workflows
       #security-events: write
   
