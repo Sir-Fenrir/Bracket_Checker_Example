@@ -29,6 +29,9 @@ jobs:
       # One restore, so we can use it both for the build and the test
       - run: dotnet restore
 
+      - name: Check formatting (dotnet-format)
+        run: dotnet format --verify-no-changes
+
       - run: dotnet build --no-restore
 
       - run: dotnet test --no-build
